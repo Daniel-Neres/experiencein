@@ -1,0 +1,29 @@
+{% extends "base_usuario.html" %}
+
+{% block body %}
+    <form class="form-signin" action="{% url 'registrar' %}" method="post">
+        {% csrf_token %}
+        <h2 class="form-signin-heading"> Crie seu usuário</h2>
+
+        <input type="text" id="id_email" name="email" value="{{form.email.value}}" class="form-control" placeholder="Email *" required autofocus/>
+        <input type="text" id="id_id_nome" name="nome" value="{{form.nome.value}}" class="form-control" placeholder="Nome *" required/>
+        <input type="password" id="id_senha" name="senha" value="{{form.senha.value}}" class="form-control" placeholder="Senha*" required/>
+        <hr/>
+        <input type="text" id="id_telefone" name="telefone" value="{{form.telefone.value}}" class="form-control" placeholder="Telefone"/>
+        <input type="text" id="id_nome_empresa" name="nome_empresa" value="{{form.nome_empresa.value}}" class="form-control" placeholder="Empresa"/>
+        <hr/>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login"> Regitrar</button>
+        
+        <!-- if novo aqui -->
+        <hr/>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <button type="buton", class="close" data-dismiss="alert" aria-hidden="true">$times;</button>
+                {{form.non_field_errors}}
+            </div>
+        {% endif%}
+        <!-- fim if novo -->
+    </form>
+{% endblock%}
